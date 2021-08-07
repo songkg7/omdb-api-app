@@ -20,18 +20,18 @@ module.exports = {
   // 추가적인 코드 규칙을 설정
   rules: {
     'prettier/prettier': ['error', { singleQuote: true }],
-    // 'vue/html-self-closing': [
-    //   'error',
-    //   {
-    //     html: {
-    //       void: 'always',
-    //       normal: 'never',
-    //       component: 'always',
-    //     },
-    //     svg: 'always',
-    //     math: 'always',
-    //   },
-    // ],
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always',
+          normal: 'never',
+          component: 'always',
+        },
+        svg: 'always',
+        math: 'always',
+      },
+    ],
     // 'vue/html-closing-bracket-newline': [
     //   'error',
     //   {
