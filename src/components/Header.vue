@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Logo from "~/components/Logo";
+import Logo from '~/components/Logo';
 export default {
   components: {
     Logo,
@@ -21,16 +21,16 @@ export default {
     return {
       navigations: [
         {
-          name: "Search",
-          href: "/",
+          name: 'Search',
+          href: '/',
         },
         {
-          name: "Movie",
-          href: "/movie",
+          name: 'Movie',
+          href: '/movie',
         },
         {
-          name: "About",
-          href: "/about",
+          name: 'About',
+          href: '/about',
         },
       ],
     };

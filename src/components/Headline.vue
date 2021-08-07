@@ -18,13 +18,13 @@
 </template>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
+@import '~/scss/main';
 .container {
   padding-top: 40px;
 }
 h1 {
   line-height: 1;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 80px;
   span {
     color: $primary;
