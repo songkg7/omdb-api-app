@@ -18,6 +18,7 @@ module.exports = {
   },
   // 추가적인 코드 규칙을 설정
   rules: {
+    "prettier/prettier": ["error"],
     "vue/html-self-closing": [
       "error",
       {
