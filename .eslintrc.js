@@ -7,35 +7,36 @@ module.exports = {
   // 사용 가능한 규칙 세트
   extends: [
     // 'plugin:vue/vue3-essential', // Lv1
-    "plugin:vue/vue3-strongly-recommended", // Lv2
+    'plugin:vue/vue3-strongly-recommended', // Lv2
     // 'plugin:vue/vue3-recommended', // Lv3
-    "eslint:recommended",
-    "plugin:prettier/recommended",
+    'eslint:recommended',
+    'plugin:prettier/recommended',
   ],
+  plugins: ['prettier', 'import', 'vue'],
   // 구문 분석할 패키지 설정(Babel, ES6^ => ES5)
   parserOptions: {
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
   },
   // 추가적인 코드 규칙을 설정
   rules: {
-    "prettier/prettier": ["error"],
-    "vue/html-self-closing": [
-      "error",
+    'prettier/prettier': ['error', { singleQuote: true, parser: 'flow' }],
+    'vue/html-self-closing': [
+      'error',
       {
         html: {
-          void: "always",
-          normal: "never",
-          component: "always",
+          void: 'always',
+          normal: 'never',
+          component: 'always',
         },
-        svg: "always",
-        math: "always",
+        svg: 'always',
+        math: 'always',
       },
     ],
-    "vue/html-closing-bracket-newline": [
-      "error",
+    'vue/html-closing-bracket-newline': [
+      'error',
       {
-        singleline: "never",
-        multiline: "never",
+        singleline: 'never',
+        multiline: 'never',
       },
     ],
   },
