@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
   data() {
     return {
@@ -60,11 +59,12 @@ export default {
   methods: {
     // Search movies
     async apply() {
-      const OMDB_API_KEY = 'cdda0f7a';
-      const result = await axios.get(
-        `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type${this.type}&y=${this.year}&page=1`
-      );
-      console.log(result);
+      this.$store.dispatch('movie/searchMovies', {
+        title: this.title,
+        type: this.type,
+        number: this.number,
+        year: this.year,
+      });
     },
   },
 };
