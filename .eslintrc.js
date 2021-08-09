@@ -10,16 +10,15 @@ module.exports = {
     'plugin:vue/vue3-strongly-recommended', // Lv2
     // 'plugin:vue/vue3-recommended', // Lv3
     'eslint:recommended',
-    'plugin:prettier/recommended',
+    'prettier',
   ],
-  plugins: ['prettier', 'vue'],
   // 구문 분석할 패키지 설정(Babel, ES6^ => ES5)
   parserOptions: {
     parser: 'babel-eslint',
   },
   // 추가적인 코드 규칙을 설정
   rules: {
-    'prettier/prettier': ['error', { singleQuote: true }],
+    // 'prettier/prettier': ['error', { singleQuote: true }],
     'vue/html-self-closing': [
       'error',
       {
@@ -40,4 +39,4 @@ module.exports = {
     //   },
     // ],
   },
-};
+}

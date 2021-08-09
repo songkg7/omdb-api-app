@@ -1,26 +1,39 @@
 <template>
-  <div class="container">
+  <div class='container'>
     <input
-      v-model="title"
-      class="form-control"
-      type="text"
-      placeholder="Search for Movies, Series & more"
-      @keyup.enter="apply"
+      v-model='title'
+      class='form-control'
+      type='text'
+      placeholder='Search for Movies, Series & more'
+      @keyup.enter='apply'
     />
-    <div class="selects">
+    <div class='selects'>
       <select
-        v-for="filter in filters"
-        :key="filter.name"
-        v-model="$data[filter.name]"
-        class="form-select"
+        v-for='filter in filters'
+        :key='filter.name'
+        v-model='$data[filter.name]'
+        class='form-select'
       >
-        <option v-if="filter.name === 'year'" value="">All Years</option>
-        <option v-for="item in filter.items" :key="item">
+        <option
+          v-if="filter.name === 'year'"
+          value=''
+        >
+          All Years
+        </option>
+        <option
+          v-for='item in filter.items'
+          :key='item'
+        >
           {{ item }}
         </option>
       </select>
     </div>
-    <button class="btn btn-primary" @click="apply">Apply</button>
+    <button
+      class='btn btn-primary'
+      @click='apply'
+    >
+      Apply
+    </button>
   </div>
 </template>
 
@@ -45,16 +58,16 @@ export default {
           name: 'year',
           // 즉시 실행 함수
           items: (() => {
-            const years = [];
-            const thisYear = new Date().getFullYear();
+            const years = []
+            const thisYear = new Date().getFullYear()
             for (let i = thisYear; i >= 1985; i -= 1) {
-              years.push(i);
+              years.push(i)
             }
-            return years;
+            return years
           })(),
         },
       ],
-    };
+    }
   },
   methods: {
     // Search movies
@@ -64,32 +77,38 @@ export default {
         type: this.type,
         number: this.number,
         year: this.year,
-      });
+      })
     },
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .container {
   display: flex;
+
   > * {
     margin-right: 10px;
     font-size: 15px;
+
     &:last-child {
       margin-right: 0;
     }
   }
+
   .selects {
     display: flex;
+
     select {
       width: 120px;
       margin-right: 10px;
+
       &:last-child {
         margin-right: 0;
       }
     }
   }
+
   .btn {
     width: 120px;
     height: 50px;
