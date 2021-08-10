@@ -16,7 +16,9 @@
     </template>
     <div v-else class="movie-details">
       <div
-        :style="{backgroundImage: `url(${theMovie.Poster})`}"
+        :style="{
+          backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})`,
+        }"
         class="poster"
       ></div>
       <div class="specs">
@@ -41,8 +43,9 @@
               class="rating"
             >
               <img
-              :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"
-              :alt='name' />
+                :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"
+                :alt="name"
+              />
               <span>{{ score }}</span>
             </div>
           </div>
@@ -69,26 +72,31 @@
 </template>
 
 <script>
-import Loader from '~/components/Loader';
+import Loader from '~/components/Loader'
 
 export default {
   components: {Loader},
   created() {
-    console.log(this.$route);
+    console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
       // movie/{id}
       id: this.$route.params.id,
-    });
+    })
   },
   computed: {
     theMovie() {
-      return this.$store.state.movie.theMovie;
+      return this.$store.state.movie.theMovie
     },
     loading() {
-      return this.$store.state.movie.loading;
+      return this.$store.state.movie.loading
     },
   },
-};
+  methods: {
+    requestDiffSizeImage(url, size = 700) {
+      return url.replace('SX300', `SX${size}`)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
