@@ -1,9 +1,7 @@
 <template>
   <div class='container'>
     <div class='skeletons'>
-      <div class='skeleton poster'>
-
-      </div>
+      <div class='skeleton poster'></div>
       <div class='specs'>
         <div class='skeleton title'></div>
         <div class='skeleton spec'></div>
@@ -13,11 +11,15 @@
         <div class='skeleton etc'></div>
       </div>
     </div>
+    <Loader :size='3' :z-index='9' fixed />
   </div>
 </template>
 
 <script>
+import Loader from '~/components/Loader'
+
 export default {
+  components: { Loader },
   created() {
     console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
@@ -29,7 +31,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import "~/scss/main";
+@import '~/scss/main';
 
 .container {
   padding-top: 40px;
@@ -52,20 +54,24 @@ export default {
   .skeleton {
     border-radius: 10px;
     background-color: $gray-200;
+
     &.title {
       width: 80%;
       height: 70px;
     }
+
     &.spec {
       width: 60%;
       height: 30px;
       margin-top: 20px;
     }
+
     &.plot {
       width: 100%;
       height: 250px;
       margin-top: 20px;
     }
+
     &.etc {
       width: 50%;
       height: 50px;
