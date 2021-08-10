@@ -1,7 +1,7 @@
 <template>
   <footer>
     <Logo />
-    <a href='https://github.com/songkg7' target='_blank'>
+    <a href="https://github.com/songkg7" target="_blank">
       (c){{ new Date().getFullYear() }} Haril
     </a>
   </footer>
@@ -18,11 +18,12 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 footer {
   padding: 70px 0;
   text-align: center;
   opacity: 0.3;
+
   .logo {
     display: block;
     margin-bottom: 4px;

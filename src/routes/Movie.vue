@@ -1,38 +1,51 @@
 <template>
-  <div class='container'>
-    <template v-if='loading'>
-      <div class='skeletons'>
-        <div class='skeleton poster'></div>
-        <div class='specs'>
-          <div class='skeleton title'></div>
-          <div class='skeleton spec'></div>
-          <div class='skeleton plot'></div>
-          <div class='skeleton etc'></div>
-          <div class='skeleton etc'></div>
-          <div class='skeleton etc'></div>
+  <div class="container">
+    <template v-if="loading">
+      <div class="skeletons">
+        <div class="skeleton poster"></div>
+        <div class="specs">
+          <div class="skeleton title"></div>
+          <div class="skeleton spec"></div>
+          <div class="skeleton plot"></div>
+          <div class="skeleton etc"></div>
+          <div class="skeleton etc"></div>
+          <div class="skeleton etc"></div>
         </div>
       </div>
-      <Loader :size='3' :z-index='9' fixed />
+      <Loader :size="3" :z-index="9" fixed />
     </template>
-    <div v-else class='movie-details'>
+    <div v-else class="movie-details">
       <div
-        :style='{ backgroundImage: `url(${theMovie.Poster})` }'
-        class='poster'
+        :style="{backgroundImage: `url(${theMovie.Poster})`}"
+        class="poster"
       ></div>
-      <div class='specs'>
-        <div class='title'>
+      <div class="specs">
+        <div class="title">
           {{ theMovie.Title }}
         </div>
-        <div class='labels'>
+        <div class="labels">
           <span>{{ theMovie.Released }}</span>
           <span>{{ theMovie.Runtime }}</span>
           <span>{{ theMovie.Country }}</span>
         </div>
-        <div class='plot'>
+        <div class="plot">
           {{ theMovie.Plot }}
         </div>
-        <div class='ratings'>
+        <div class="ratings">
           <h3>Ratings</h3>
+          <div class="rating-wrap">
+            <div
+              v-for="{Source: name, Value: score} in theMovie.Ratings"
+              :key="name"
+              :title="name"
+              class="rating"
+            >
+              <img
+              :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"
+              :alt='name' />
+              <span>{{ score }}</span>
+            </div>
+          </div>
         </div>
         <div>
           <h3>Actors</h3>
@@ -56,29 +69,29 @@
 </template>
 
 <script>
-import Loader from '~/components/Loader'
+import Loader from '~/components/Loader';
 
 export default {
-  components: { Loader },
+  components: {Loader},
   created() {
-    console.log(this.$route)
+    console.log(this.$route);
     this.$store.dispatch('movie/searchMovieWithId', {
       // movie/{id}
       id: this.$route.params.id,
-    })
+    });
   },
   computed: {
     theMovie() {
-      return this.$store.state.movie.theMovie
+      return this.$store.state.movie.theMovie;
     },
     loading() {
-      return this.$store.state.movie.loading
+      return this.$store.state.movie.loading;
     },
   },
-}
+};
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import '~/scss/main';
 
 .container {
@@ -174,6 +187,21 @@ export default {
     }
 
     .ratings {
+      .rating-wrap {
+        display: flex;
+
+        .rating {
+          display: flex;
+          align-items: center;
+          margin-right: 32px;
+
+          img {
+            height: 30px;
+            flex-shrink: 0;
+            margin-right: 6px;
+          }
+        }
+      }
     }
 
     h3 {

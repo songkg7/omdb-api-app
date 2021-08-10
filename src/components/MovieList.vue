@@ -1,20 +1,20 @@
 <template>
-  <div class='container'>
-    <div :class="{ 'no-result': !movies.length }" class='inner'>
-      <Loader v-if='loading' />
-      <div v-if='message' class='message'>
+  <div class="container">
+    <div :class="{'no-result': !movies.length}" class="inner">
+      <Loader v-if="loading" />
+      <div v-if="message" class="message">
         {{ message }}
       </div>
-      <div v-else class='movies'>
-        <MovieItem v-for='movie in movies' :key='movie.imdbID' :movie='movie' />
+      <div v-else class="movies">
+        <MovieItem v-for="movie in movies" :key="movie.imdbID" :movie="movie" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MovieItem from '~/components/MovieItem'
-import Loader from '~/components/Loader'
+import MovieItem from '~/components/MovieItem';
+import Loader from '~/components/Loader';
 
 export default {
   components: {
@@ -23,20 +23,20 @@ export default {
   },
   computed: {
     movies() {
-      return this.$store.state.movie.movies
+      return this.$store.state.movie.movies;
     },
     message() {
-      return this.$store.state.movie.message
+      return this.$store.state.movie.message;
     },
     loading() {
-      return this.$store.state.movie.loading
+      return this.$store.state.movie.loading;
     },
   },
-}
+};
 </script>
 
-<style lang='scss' scoped>
-@import "~/scss/main";
+<style lang="scss" scoped>
+@import '~/scss/main';
 
 .container {
   margin-top: 30px;
