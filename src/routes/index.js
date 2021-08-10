@@ -14,12 +14,12 @@ export default createRouter({
       component: Home,
     },
     {
-      path: '/about',
-      component: About,
+      path: '/movie/:id',
+      component: Movie,
     },
     {
-      path: '/movie',
-      component: Movie,
+      path: '/about',
+      component: About,
     },
   ],
 });
