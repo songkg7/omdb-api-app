@@ -1,15 +1,19 @@
 <template>
-  <div :style='{ backgroundImage: `url(${movie.Poster})`}' class='movie'>
-    <Loader v-if='imageLoading' :size='1.5' absolute />
-    <div class='info'>
-      <div class='year'>
+  <RouterLink
+    :to="`/movie/${movie.imdbID}`"
+    :style="{backgroundImage: `url(${movie.Poster})`}"
+    class="movie"
+  >
+    <Loader v-if="imageLoading" :size="1.5" absolute />
+    <div class="info">
+      <div class="year">
         {{ movie.Year }}
       </div>
-      <div class='title'>
+      <div class="title">
         {{ movie.Title }}
       </div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script>
@@ -47,7 +51,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import '~/scss/main';
 
 .movie {
@@ -75,7 +79,7 @@ export default {
     position: absolute;
     left: 0;
     bottom: 0;
-    background-color: rgba($black, .3);
+    background-color: rgba($black, 0.3);
     width: 100%;
     padding: 14px;
     font-size: 14px;
