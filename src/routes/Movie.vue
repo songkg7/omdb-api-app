@@ -1,50 +1,52 @@
 <template>
-  <div class="container">
-    <template v-if="loading">
-      <div class="skeletons">
-        <div class="skeleton poster"></div>
-        <div class="specs">
-          <div class="skeleton title"></div>
-          <div class="skeleton spec"></div>
-          <div class="skeleton plot"></div>
-          <div class="skeleton etc"></div>
-          <div class="skeleton etc"></div>
-          <div class="skeleton etc"></div>
+  <div class='container'>
+    <template v-if='loading'>
+      <div class='skeletons'>
+        <div class='skeleton poster'></div>
+        <div class='specs'>
+          <div class='skeleton title'></div>
+          <div class='skeleton spec'></div>
+          <div class='skeleton plot'></div>
+          <div class='skeleton etc'></div>
+          <div class='skeleton etc'></div>
+          <div class='skeleton etc'></div>
         </div>
       </div>
-      <Loader :size="3" :z-index="9" fixed />
+      <Loader :size='3' :z-index='9' fixed />
     </template>
-    <div v-else class="movie-details">
+    <div v-else class='movie-details'>
       <div
-        :style="{
-          backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})`,
-        }"
-        class="poster"
-      ></div>
-      <div class="specs">
-        <div class="title">
+        :style='{
+          backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})`
+        }'
+        class='poster'
+      >
+        <Loader v-if='imageLoading' absolute />
+      </div>
+      <div class='specs'>
+        <div class='title'>
           {{ theMovie.Title }}
         </div>
-        <div class="labels">
+        <div class='labels'>
           <span>{{ theMovie.Released }}</span>
           <span>{{ theMovie.Runtime }}</span>
           <span>{{ theMovie.Country }}</span>
         </div>
-        <div class="plot">
+        <div class='plot'>
           {{ theMovie.Plot }}
         </div>
-        <div class="ratings">
+        <div class='ratings'>
           <h3>Ratings</h3>
-          <div class="rating-wrap">
+          <div class='rating-wrap'>
             <div
-              v-for="{Source: name, Value: score} in theMovie.Ratings"
-              :key="name"
-              :title="name"
-              class="rating"
+              v-for='{Source: name, Value: score} in theMovie.Ratings'
+              :key='name'
+              :title='name'
+              class='rating'
             >
               <img
-                :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"
-                :alt="name"
+                :src='`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`'
+                :alt='name'
               />
               <span>{{ score }}</span>
             </div>
@@ -75,7 +77,12 @@
 import Loader from '~/components/Loader'
 
 export default {
-  components: {Loader},
+  components: { Loader },
+  data() {
+    return {
+      imageLoading: true,
+    }
+  },
   created() {
     console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
@@ -93,13 +100,18 @@ export default {
   },
   methods: {
     requestDiffSizeImage(url, size = 700) {
-      return url.replace('SX300', `SX${size}`)
+      const src = url.replace('SX300', `SX${size}`)
+      this.$loadImage(src)
+        .then(() => {
+          this.imageLoading = false
+        })
+      return src
     },
   },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 @import '~/scss/main';
 
 .container {
@@ -154,6 +166,7 @@ export default {
   color: $gray-600;
 
   .poster {
+    position: relative;
     flex-shrink: 0;
     width: 500px;
     height: 500px * 3/2;
