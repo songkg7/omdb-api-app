@@ -17,7 +17,7 @@
     <div v-else class='movie-details'>
       <div
         :style='{
-          backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})`
+          backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})`,
         }'
         class='poster'
       >
@@ -39,7 +39,7 @@
           <h3>Ratings</h3>
           <div class='rating-wrap'>
             <div
-              v-for='{Source: name, Value: score} in theMovie.Ratings'
+              v-for='{ Source: name, Value: score } in theMovie.Ratings'
               :key='name'
               :title='name'
               class='rating'
@@ -105,10 +105,9 @@ export default {
         return ''
       }
       const src = url.replace('SX300', `SX${size}`)
-      this.$loadImage(src)
-        .then(() => {
-          this.imageLoading = false
-        })
+      this.$loadImage(src).then(() => {
+        this.imageLoading = false
+      })
       return src
     },
   },
@@ -234,6 +233,39 @@ export default {
       color: $black;
       font-family: 'Oswald', sans-serif;
       font-size: 20px;
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    .poster {
+      width: 300px;
+      height: 300px * 3/2;
+      margin-right: 40px;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    display: block;
+    .poster {
+      margin-bottom: 40px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .specs {
+      .title {
+        font-size: 50px;
+      }
+
+      .ratings {
+        .rating-wrap {
+          display: block;
+
+          .rating {
+            margin-top: 10px;
+          }
+        }
+      }
     }
   }
 }

@@ -14,26 +14,13 @@
         v-model='$data[filter.name]'
         class='form-select'
       >
-        <option
-          v-if="filter.name === 'year'"
-          value=''
-        >
-          All Years
-        </option>
-        <option
-          v-for='item in filter.items'
-          :key='item'
-        >
+        <option v-if="filter.name === 'year'" value=''>All Years</option>
+        <option v-for='item in filter.items' :key='item'>
           {{ item }}
         </option>
       </select>
     </div>
-    <button
-      class='btn btn-primary'
-      @click='apply'
-    >
-      Apply
-    </button>
+    <button class='btn btn-primary' @click='apply'>Apply</button>
   </div>
 </template>
 
@@ -84,6 +71,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import '~/scss/main';
+
 .container {
   display: flex;
 
@@ -114,6 +103,25 @@ export default {
     height: 50px;
     font-weight: 700;
     flex-shrink: 0;
+  }
+
+  @include media-breakpoint-down(lg) {
+    display: block;
+    input {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .selects {
+      margin-right: 0;
+      margin-bottom: 10px;
+
+      select {
+        width: 100%;
+      }
+    }
+    .btn {
+      width: 100%;
+    }
   }
 }
 </style>
