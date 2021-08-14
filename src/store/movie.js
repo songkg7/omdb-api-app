@@ -67,7 +67,7 @@ export default {
             })
           }
         }
-      } catch (message) {
+      } catch ({ message }) {
         commit('updateState', {
           movies: [],
           message,
@@ -79,7 +79,6 @@ export default {
       }
     },
     async searchMovieWithId({ state, commit }, payload) {
-
       if (state.loading) return
 
       commit('updateState', {
@@ -101,29 +100,10 @@ export default {
           loading: false,
         })
       }
-
     },
   },
 }
 
-function _fetchMovie(payload) {
-  const { title, type, page, year, id } = payload
-  const OMDB_API_KEY = 'cdda0f7a'
-  const url = id
-    ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`
-    : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type${type}&y=${year}&page=${page}`
-
-  return new Promise((resolve, reject) => {
-    axios
-      .get(url)
-      .then((res) => {
-        if (res.data.Error) {
-          reject(res.data.Error)
-        }
-        resolve(res)
-      })
-      .catch((error) => {
-        reject(error.message)
-      })
-  })
+async function _fetchMovie(payload) {
+  return await axios.post('/.netlify/functions/movie', payload)
 }
