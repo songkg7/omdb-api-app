@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
 
 export default {
@@ -24,21 +25,7 @@ export default {
     }
   },
   computed: {
-    image() {
-      return this.$store.state.about.image
-    },
-    name() {
-      return this.$store.state.about.name
-    },
-    email() {
-      return this.$store.state.about.email
-    },
-    blog() {
-      return this.$store.state.about.blog
-    },
-    phone() {
-      return this.$store.state.about.phone
-    },
+    ...mapState('about', ['iamge', 'name', 'email', 'blog', 'phone']),
   },
   // mounted, created 같은 라이프 사이클에서는 비동기 동작을 할 수 없기 때문에, 메소드로 만든다음 실행만 해준다.
   mounted() {
@@ -54,7 +41,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
 .about {
   text-align: center;
 
