@@ -7,6 +7,6 @@ export default {
     email: 'songkg7@gmail.com',
     blog: 'https://songkg7.tistroy.com',
     phone: '+82 10-1234-5678',
-    image: 'https://tistory2.daumcdn.net/tistory/4210103/attach/e91834925aca4d7bbfbb7a81c158f2fd',
+    image: 'https://raw.githubusercontent.com/songkg7/omdb-api-app/master/src/assets/logo.png',
   }),
 }
