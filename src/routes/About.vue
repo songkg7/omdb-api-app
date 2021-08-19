@@ -25,7 +25,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('about', ['iamge', 'name', 'email', 'blog', 'phone']),
+    ...mapState('about', ['image', 'name', 'email', 'blog', 'phone']),
   },
   // mounted, created 같은 라이프 사이클에서는 비동기 동작을 할 수 없기 때문에, 메소드로 만든다음 실행만 해준다.
   mounted() {
